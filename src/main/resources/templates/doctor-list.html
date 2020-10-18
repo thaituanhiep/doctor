@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:insert="~{fragments/htmlhead}"/>
+<body>
+<!-- DO NOT MODIFY -->
+<div class="wrapper">
+    <header class="header" th:replace="~{fragments/header}"/>
+
+    <div class="intro intro-small">
+        <div class="intro-image fullsize-image-container" data-stellar-background-ratio="0.54">
+            <img th:src="@{/img/temp/intro3.jpg}" class="fullsize-image" alt=""/>
+        </div><!-- /.intro-image -->
+
+        <div class="row">
+            <div class="intro-caption">
+                <h5>TRAINED STAFF</h5>
+
+                <h2>OUR DOCTORS</h2>
+            </div><!-- /.intro-caption -->
+        </div><!-- /.row -->
+    </div><!-- /.intro intro-small -->
+
+    <div class="main">
+        <div class="section-doctors section-doctors-alt">
+            <div class="tabs tabs-services">
+
+                <div class="row row-alt">
+                    <p class="breadcrumbs">
+                        <a th:href="@{/doctor}">Home</a>
+
+                        <span>
+							<i class="fa fa-angle-right"></i>
+						</span>
+
+                        <a th:href="@{/doctor}" class="current">Doctors</a>
+                    </p><!-- /.breadcrumbs -->
+                </div><!-- /.row -->
+
+                <div class="tabs-body">
+
+                    <!-- Tab #1 -->
+                    <div class="tab-body current" id="tab1">
+                        <div class="row">
+                            <div class="columns large-4 medium-4" th:each="doctor : ${doctorList}">
+                                <div class="doctor">
+                                    <h5 class="doctor-name" th:text="*{doctor.getName()}">DR. JOHNATHON DOE</h5>
+                                    <!-- /.doctor-name -->
+
+                                    <div class="doctor-box">
+                                        <div class="doctor-image">
+                                            <a th:href="@{/doctor/id/{doctorCode}(doctorCode=*{doctor.getDoctorCode()})}">
+                                                <img th:src="*{doctor.getImageProfile()}" alt=""/>
+                                            </a>
+                                        </div><!-- /.doctor-image -->
+
+                                        <div class="doctor-body">
+                                            <h6 th:text="*{doctor.getRoles()}"></h6>
+
+                                            <p th:text="*{doctor.getAbout().substring(0,250)}"></p>
+
+                                            <a th:href="@{/doctor/id/{doctorCode}(doctorCode=*{doctor.getDoctorCode()})}"
+                                               class="link-more">
+                                                <i class="fa fa-plus"></i>
+                                                KNOW MORE
+                                            </a>
+                                        </div><!-- /.doctor-body -->
+                                    </div><!-- /.doctor-box -->
+                                </div><!-- /.doctor -->
+                            </div><!-- /.columns large-4 -->
+                        </div><!-- /.row -->
+                    </div><!-- /.tab-body -->
+
+                </div><!-- /.tabs-body -->
+            </div><!-- /.tabs -->
+
+        </div><!-- /.section-doctors -->
+    </div><!-- /.main -->
+
+    <div class="footer" th:replace="~{fragments/footer}"/>
+</div><!-- /.wrapper -->
+
+<th:block th:insert="~{fragments/lastScript}"/>
+</body>
+</html>
+
+
