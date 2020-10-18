@@ -1,0 +1,36 @@
+<header class="header" xmlns:th="http://www.thymeleaf.org">
+
+    <div class="row">
+        <div class="columns large-3 medium-12">
+            <a th:href="@{/doctor}" class="logo">
+                <img th:src="@{/img/logo.png}" width="762" height="78" alt="Health & Medical">
+            </a>
+        </div><!-- /.columns large-3 -->
+
+        <div class="columns large-7 medium-8">
+            <a href="#" class="btn-menu">
+                <span></span>
+            </a>
+
+            <nav class="nav">
+                <ul class="clearfix">
+                    <li class="current">
+                        <a th:href="@{/doctor}">Home</a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/doctor}">Doctors</a>
+                    </li>
+                </ul>
+            </nav><!-- /.nav -->
+        </div><!-- /.columns large-6 -->
+
+        <div class="columns large-2 medium-4 mobile-hidden">
+            <p class="phone">
+                <i class="fa fa-mobile"></i>
+                <small>Call Us</small>
+                <a href='tel: 514 908 9010'>514 908 9010</a>
+            </p><!-- /.phone -->
+        </div><!-- /.columns large-3 -->
+    </div><!-- /.row -->
+</header><!-- /.header -->

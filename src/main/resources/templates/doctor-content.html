@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:insert="~{fragments/htmlhead}"/>
+<body>
+
+<div class="wrapper">
+    <header class="header" th:replace="~{fragments/header}"/>
+
+    <div class="intro intro-small">
+        <div class="intro-image fullsize-image-container" data-stellar-background-ratio="0.54">
+            <img th:src="@{/img/temp/intro3.jpg}" class="fullsize-image" alt=""/>
+        </div><!-- /.intro-image -->
+
+        <div class="row">
+            <div class="intro-caption">
+                <h5 th:text="*{doctor.getEducation()}"></h5>
+
+                <h2 th:text="*{doctor.getName()}"></h2>
+            </div><!-- /.intro-caption -->
+        </div><!-- /.row -->
+    </div><!-- /.intro intro-small -->
+
+    <div class="main grey">
+        <div class="row">
+            <div class="columns large-12">
+                <p class="breadcrumbs">
+                    <a th:href="@{/doctor}">Home</a>
+
+                    <span>
+						<i class="fa fa-angle-right"></i>
+					</span>
+
+                    <a th:href="@{/doctor}">Doctors</a>
+
+                    <span>
+						<i class="fa fa-angle-right"></i>
+					</span>
+
+                    <a href="#" class="current"> DR. Johnathan Doe</a>
+                </p><!-- /.breadcrumbs -->
+            </div><!-- /.columns large-12 -->
+
+            <div class="columns large-8 medium-7">
+                <div class="content" itemscope itemtype="https://schema.org/BlogPosting">
+                    <article class="event article-single-event">
+
+                        <div class="event-boxs">
+
+
+                            <div class="event-body" itemprop="articleBody">
+
+                                <div class="doctor-profile">
+                                    <div class="row">
+                                        <div class="small-12 large-4 columns">
+                                            <img th:src="*{doctor.getImageProfile()}" alt=""/>
+                                        </div>
+
+                                        <div class="small-12 large-8 columns">
+                                            <div class="doctor-program">
+                                                <h4>Availability</h4>
+                                                <ul th:each="award : ${awardList}"
+                                                    class="small-block-grid-1 medium-block-grid-1 large-block-grid-2">
+                                                    <ol>. <span th:text="*{award.getName()}"></span></ol>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p th:text="*{doctor.getAbout()}"></p>
+
+                                <h3>WORK EXPERIENCE</h3>
+
+                                <p th:each="experience : ${experienceList}">
+                                    <span th:text="*{experience.getContent()}"></span>
+                                </p>
+
+                            </div><!-- /.doctor-body -->
+                        </div><!-- /.event-box -->
+                    </article><!-- /.event article-single-event -->
+
+                </div><!-- /.content -->
+            </div><!-- /.columns large-8 -->
+
+            <div class="columns large-4 medium-5">
+                <div class="sidebar">
+                    <div class="widgets">
+                        <div class="widget widget-menu">
+                            <h4>Speciality</h4>
+
+                            <ul th:each="speciality : ${specialities}" class="list-plus">
+                                <li th:text="*{speciality}">
+                                </li>
+
+                            </ul><!-- /.list-plus -->
+                        </div><!-- /.widget widget-menu -->
+
+                    </div><!-- /.widgets -->
+                </div><!-- /.sidebar -->
+            </div><!-- /.columns large-4 -->
+        </div><!-- /.row -->
+
+    </div><!-- /.main -->
+
+    <div class="footer" th:replace="~{fragments/footer}"/>
+</div><!-- /.wrapper -->
+<th:block th:insert="~{fragments/lastScript}"/>
+</body>
+</html>
+
+
