@@ -1,43 +1,35 @@
 package com.example.doctor.controller;
 
-import com.example.doctor.service.AwardService;
+import com.example.doctor.dto.SearchDTO;
 import com.example.doctor.service.DoctorService;
-import com.example.doctor.service.ExperienceService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping(value = "/api/doctor")
 public class DoctorController {
 
     @Autowired
     private DoctorService doctorService;
 
-    @Autowired
-    private AwardService awardService;
-
-    @Autowired
-    private ExperienceService experienceService;
-
-    @GetMapping(value = "/doctor")
-    public String listDoctor(Model model) {
-        model.addAttribute("doctorList", doctorService.getAll());
-        return "doctor-list";
+    @GetMapping(value = "/all")
+    public ResponseEntity<?> getAllDoctors() {
+        return ResponseEntity.ok(doctorService.getAll());
     }
 
-    @GetMapping(value = "/doctor/id/{doctorCode}")
-    public String infoDoctor(Model model, @PathVariable("doctorCode") String doctorCode) {
-        return doctorService.findDoctorByDoctorCode(doctorCode)
-                .map(doctor -> {
-                    model.addAttribute("doctor", doctor);
-                    model.addAttribute("awardList", awardService.findAwardsByDoctorCode(doctorCode));
-                    model.addAttribute("experienceList",
-                            experienceService.findExperiencesByDoctorCode(doctorCode));
-                    model.addAttribute("specialities", doctor.getSpecialities().split(";"));
-                    return "doctor-content";
-                })
-                .orElse("doctor-list");
+    @GetMapping(value = "/id/{doctorCode}")
+    public ResponseEntity<?> findByDoctorCode(@PathVariable(required = false) String doctorCode) {
+        if (doctorCode == null) {
+            return ResponseEntity.noContent().build();
+        } else return ResponseEntity.ok(doctorService.findByDoctorCode(doctorCode));
+    }
+
+    @PostMapping(value = "/search")
+    public ResponseEntity<?> searchDoctor(@RequestBody String searchObj) {
+        Gson gson = new Gson();
+        SearchDTO searchDTO = gson.fromJson(searchObj, SearchDTO.class);
+        return ResponseEntity.ok(doctorService.searchDoctor(searchDTO));
     }
 }

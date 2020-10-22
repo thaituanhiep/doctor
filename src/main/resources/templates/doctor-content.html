@@ -13,9 +13,9 @@
 
         <div class="row">
             <div class="intro-caption">
-                <h5 th:text="*{doctor.getEducation()}"></h5>
+                <h5 class="doct-education"></h5>
 
-                <h2 th:text="*{doctor.getName()}"></h2>
+                <h2 class="doct-name"></h2>
             </div><!-- /.intro-caption -->
         </div><!-- /.row -->
     </div><!-- /.intro intro-small -->
@@ -24,19 +24,19 @@
         <div class="row">
             <div class="columns large-12">
                 <p class="breadcrumbs">
-                    <a th:href="@{/doctor}">Home</a>
+                    <a class="doct-list-link">Trang chủ</a>
 
                     <span>
 						<i class="fa fa-angle-right"></i>
 					</span>
 
-                    <a th:href="@{/doctor}">Doctors</a>
+                    <a class="doct-list-link">Bác sĩ</a>
 
                     <span>
 						<i class="fa fa-angle-right"></i>
 					</span>
 
-                    <a href="#" class="current"> DR. Johnathan Doe</a>
+                    <a href="" class="current doct-name"></a>
                 </p><!-- /.breadcrumbs -->
             </div><!-- /.columns large-12 -->
 
@@ -47,33 +47,28 @@
                         <div class="event-boxs">
 
 
-                            <div class="event-body" itemprop="articleBody">
+                            <div id="doct-expers" class="event-body" itemprop="articleBody">
 
                                 <div class="doctor-profile">
                                     <div class="row">
                                         <div class="small-12 large-4 columns">
-                                            <img th:src="*{doctor.getImageProfile()}" alt=""/>
+                                            <img class="doct-image" alt=""/>
                                         </div>
 
-                                        <div class="small-12 large-8 columns">
+                                        <div class="small-12 large-8 columns hidden" id="doct-awards-div">
                                             <div class="doctor-program">
-                                                <h4>Availability</h4>
-                                                <ul th:each="award : ${awardList}"
+                                                <h4>Giải thưởng</h4>
+                                                <ul id="doct-awards"
                                                     class="small-block-grid-1 medium-block-grid-1 large-block-grid-2">
-                                                    <ol>. <span th:text="*{award.getName()}"></span></ol>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <p th:text="*{doctor.getAbout()}"></p>
+                                <p class="doct-about"></p>
 
-                                <h3>WORK EXPERIENCE</h3>
-
-                                <p th:each="experience : ${experienceList}">
-                                    <span th:text="*{experience.getContent()}"></span>
-                                </p>
+                                <h3>KINH NGHIỆM</h3>
 
                             </div><!-- /.doctor-body -->
                         </div><!-- /.event-box -->
@@ -86,12 +81,9 @@
                 <div class="sidebar">
                     <div class="widgets">
                         <div class="widget widget-menu">
-                            <h4>Speciality</h4>
+                            <h3>Chuyên ngành</h3>
 
-                            <ul th:each="speciality : ${specialities}" class="list-plus">
-                                <li th:text="*{speciality}">
-                                </li>
-
+                            <ul class="list-plus" id="doct-specs">
                             </ul><!-- /.list-plus -->
                         </div><!-- /.widget widget-menu -->
 
@@ -105,6 +97,7 @@
     <div class="footer" th:replace="~{fragments/footer}"/>
 </div><!-- /.wrapper -->
 <th:block th:insert="~{fragments/lastScript}"/>
+<script th:src="@{/js/doct-content-api.js}"></script>
 </body>
 </html>
 
