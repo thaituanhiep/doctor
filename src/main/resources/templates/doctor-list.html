@@ -13,9 +13,9 @@
 
         <div class="row">
             <div class="intro-caption">
-                <h5>TRAINED STAFF</h5>
+                <h5>Đội ngũ</h5>
 
-                <h2>OUR DOCTORS</h2>
+                <h2>Các chuyên gia của chúng tôi</h2>
             </div><!-- /.intro-caption -->
         </div><!-- /.row -->
     </div><!-- /.intro intro-small -->
@@ -24,15 +24,80 @@
         <div class="section-doctors section-doctors-alt">
             <div class="tabs tabs-services">
 
+                <div class="tab-head">
+                    <div class="tabs-nav">
+                        <form class="row" id="search-doct" style="display: flex;flex-wrap: wrap; margin: auto">
+                            <div class="columns large-3 medium-4 small-12 inner">
+                                <div class="has-suggestion">
+                                    <input type="text" name="name" class="search-input" id="input-name"
+                                           placeholder=" Tìm kiếm theo tên">
+                                </div>
+                            </div>
+                            <div class="columns large-3 medium-4 small-12 inner">
+                                <div class="has-suggestion">
+                                    <select class="search-input" name="nationality" id="select-nationality">
+                                        <option disabled selected value>Tìm kiếm theo quốc tịch</option>
+                                        <option value="Hàn Quốc">Hàn Quốc</option>
+                                        <option value="Anh">Anh</option>
+                                        <option value="Mỹ">Mỹ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="columns large-3 medium-4 small-12 inner">
+                                <div class="has-suggestion">
+                                    <select class="search-input" name="specialities" id="select-spec">
+                                        <option disabled selected value>Tìm kiếm theo chuyên ngành</option>
+                                        <option value="Gây mê - điều trị đau">Gây mê - điều trị đau</option>
+                                        <option value="Ung bướu-Xạ trị">Ung bướu-Xạ trị</option>
+                                        <option value="Nhi Huyết học - Truyền máu">Nhi Huyết học - Truyền máu</option>
+                                        <option value="Huyết học">Huyết học</option>
+                                        <option value="Sản khoa">Sản khoa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="columns large-3 medium-4 small-12 inner">
+                                <div class="has-suggestion">
+                                    <select class="search-input" name="gender" id="select-gender">
+                                        <option disabled selected value>Tìm kiếm theo giới tính</option>
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="columns large-3 medium-4 small-12 inner">
+                                <div class="has-suggestion">
+                                    <select class="search-input" name="education" id="select-edu">
+                                        <option disabled selected value>Tìm kiếm theo học vấn</option>
+                                        <option value="Giáo sư">Giáo sư</option>
+                                        <option value="Phó Giáo Sư">Phó Giáo Sư</option>
+                                        <option value="Bác sĩ">Bác sĩ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="columns large-3 medium-4 small-12 inner">
+                                <div class="has-suggestion">
+                                    <select class="search-input" name="hospital" id="select-hospital">
+                                        <option disabled selected value>Tìm kiếm theo bệnh viện</option>
+                                        <option value="Vinmec Times City">Vinmec Times City</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="btn-search-doct" type="submit">
+                                Tìm kiếm bác sĩ
+                            </button>
+                        </form><!-- /.row -->
+                    </div><!-- /.tabs-nav -->
+                </div>
+
                 <div class="row row-alt">
                     <p class="breadcrumbs">
-                        <a th:href="@{/doctor}">Home</a>
+                        <a th:href="@{/doctors}">Trang chủ</a>
 
                         <span>
 							<i class="fa fa-angle-right"></i>
 						</span>
 
-                        <a th:href="@{/doctor}" class="current">Doctors</a>
+                        <a th:href="@{/doctors}" class="current">Bác sĩ</a>
                     </p><!-- /.breadcrumbs -->
                 </div><!-- /.row -->
 
@@ -40,33 +105,8 @@
 
                     <!-- Tab #1 -->
                     <div class="tab-body current" id="tab1">
-                        <div class="row">
-                            <div class="columns large-4 medium-4" th:each="doctor : ${doctorList}">
-                                <div class="doctor">
-                                    <h5 class="doctor-name" th:text="*{doctor.getName()}">DR. JOHNATHON DOE</h5>
-                                    <!-- /.doctor-name -->
+                        <div class="row" id="doct-list">
 
-                                    <div class="doctor-box">
-                                        <div class="doctor-image">
-                                            <a th:href="@{/doctor/id/{doctorCode}(doctorCode=*{doctor.getDoctorCode()})}">
-                                                <img th:src="*{doctor.getImageProfile()}" alt=""/>
-                                            </a>
-                                        </div><!-- /.doctor-image -->
-
-                                        <div class="doctor-body">
-                                            <h6 th:text="*{doctor.getRoles()}"></h6>
-
-                                            <p th:text="*{doctor.getAbout().substring(0,250)}"></p>
-
-                                            <a th:href="@{/doctor/id/{doctorCode}(doctorCode=*{doctor.getDoctorCode()})}"
-                                               class="link-more">
-                                                <i class="fa fa-plus"></i>
-                                                KNOW MORE
-                                            </a>
-                                        </div><!-- /.doctor-body -->
-                                    </div><!-- /.doctor-box -->
-                                </div><!-- /.doctor -->
-                            </div><!-- /.columns large-4 -->
                         </div><!-- /.row -->
                     </div><!-- /.tab-body -->
 
@@ -80,6 +120,7 @@
 </div><!-- /.wrapper -->
 
 <th:block th:insert="~{fragments/lastScript}"/>
+<script th:src="@{/js/doct-list-api.js}"></script>
 </body>
 </html>
 

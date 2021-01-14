@@ -1,6 +1,6 @@
 package com.example.doctor.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.NaturalId;
 
@@ -26,11 +26,11 @@ public class Doctor implements Serializable {
     private String doctorCode;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("doctor")
+    @JsonIgnore
     private Set<Award> awards;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("doctor")
+    @JsonIgnore
     private Set<Experience> experiences;
 
     @Size(max = 50)
